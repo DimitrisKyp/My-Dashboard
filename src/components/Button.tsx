@@ -1,4 +1,3 @@
-// src/components/Button.tsx
 import React, { ReactNode } from 'react';
 
 interface ButtonProps {
@@ -9,7 +8,7 @@ interface ButtonProps {
 export default function Button({ children, onClick }: ButtonProps) {
   return (
     <button
-      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mt-4 transition duration-200 transform hover:scale-105"
       onClick={onClick}
     >
       {children}
