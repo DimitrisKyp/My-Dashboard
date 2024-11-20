@@ -1,16 +1,18 @@
 import React, { ReactNode } from 'react';
 import LeftPanel from './components/LeftPanel';
 import RightPanel from './components/RightPanel';
-
+import useTheme from './themes/useTheme';
 interface LayoutProps {
   children: ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
-  return (
-    <div className="flex min-h-screen bg-gray-900 text-gray-100 font-sans">
+    const theme = useTheme();
+
+    return (
+    <div className={`flex min-h-screen ${theme.colors.background.primary} text-gray-100 font-sans`}>
       {/* Left Panel - Personal Info */}
-      <aside className="w-1/5 bg-gray-800 text-white p-6 fixed h-full flex flex-col items-center">
+      <aside className={`w-1/5 ${theme.colors.background.secondary} text-white p-6 fixed h-full flex flex-col items-center`}>
         <LeftPanel />
       </aside>
 
@@ -20,7 +22,7 @@ export default function Layout({ children }: LayoutProps) {
       </main>
 
       {/* Right Panel - Navigation Links */}
-      <aside className="w-1/5 bg-gray-800 text-white p-6 fixed right-0 h-full">
+      <aside className="w-1/5 text-white p-6 fixed right-0 h-full">
         <RightPanel />
       </aside>
     </div>

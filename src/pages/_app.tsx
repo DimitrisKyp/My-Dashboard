@@ -1,15 +1,18 @@
-import type { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
-import '../styles/globall.css';
-import { theme } from '../themes';
-import Layout from '../layout';
+import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "../redux/store";
+import Layout from "../layout";
+import "../styles/globall.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </PersistGate>
+    </Provider>
   );
 }
