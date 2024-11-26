@@ -6,13 +6,21 @@ import Layout from "../layout";
 import "../styles/globall.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const isClient = typeof window !== "undefined";
+
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      {isClient ? (
+        <PersistGate loading={null} persistor={persistor!}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </PersistGate>
+      ) : (
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </PersistGate>
+      )}
     </Provider>
   );
 }

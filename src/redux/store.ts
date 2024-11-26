@@ -21,10 +21,9 @@ export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
 });
 
-export const persistor = persistStore(store);
+// export const persistor = persistStore(store);
+export const persistor = typeof window !== "undefined" ? persistStore(store) : null;
 
-// Define RootState type
 export type RootState = ReturnType<typeof rootReducer>;
 
-// Export store for use throughout the app
 export default store;
